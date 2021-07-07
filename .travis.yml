@@ -20,3 +20,15 @@ after_success:
   - docker push yoshmatsumoto/multi-nginx
   - docker push yoshmatsumoto/multi-server
   - docker push yoshmatsumoto/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-northeast-1"
+  app: "multi-docker"
+  env: "Multidocker-env-1"
+  bucket_name: "elasticbeanstalk-ap-northeast-1-331102144433"
+  bucket_path: "docker-multi"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
